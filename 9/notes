@@ -1,0 +1,23 @@
+Conditional Branching
+JXX - JA, JAE, JE, JG, JZ, JNZ ... etc
+Dictated by the state of the:
+- Zero Flag (ZF)
+- Parity Flag (PF)
+- Overflow Flag (OF)
+- Sign Flag (SF)
+- Carry Flag (CF)
+In order to use conditinal jumps, you must haev an operation which sets the EFLAGS register appropriately
+In conditional jumps, only SHORT and NEAR jumps are supported.  Far jumps are not supported
+
+Loop instruction
+used to loop through a set of instructions a pre-determined number of times
+number of times is stored in ECX
+-- Loop automatically decrements ECX after every run
+-- Sample:
+	<code>
+	movl $10, %ecx  # 10 times
+	LoopThis:
+		<code>
+		<code>
+		LOOP LoopThis
+There are also LOOPZ and LOOPNZ associated with Zero Flag

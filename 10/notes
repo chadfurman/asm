@@ -1,0 +1,18 @@
+Functions in Assembly
+Defining a function in Assembly:
+	.type MyFunction, @function
+	MyFunction:
+		<code>
+		<code>
+		ret
+Function is invocked using "call MyFunction"
+
+Passing Arguments and Returning Values
+- Passing Arguments to functions
+	Registers
+	Global Memory locations
+	stack
+Returning Value from a function
+- Registers
+- Global memory locations
+

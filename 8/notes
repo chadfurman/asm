@@ -1,0 +1,13 @@
+Unconditional branching
+1. JMP
+	-- compare it with GOTO
+	-- Syntax -- jmp label
+		-- short +/- 128bytes
+		-- far to different segment
+		-- near between short/near
+2. Call:
+	Just like calling a function in c
+	syntax: call location
+	there is an associated RET statement with every call
+		compare with return statement in C -- similar
+	Using call pushes the next instruction address onto stack

@@ -1,0 +1,8 @@
+1) make a function which copys a string from initialized memory to uninitalized memory
+2) make a function which asks the user for a string
+3) make a function which loops through other function calls
+
+Note: I should initialize a "prompt" in memory
+-- We are copying the string just because we want to practice string copying
+-- It doesn't matter how many times you loop the function call
+-- If the user doesn't enter a string, show an error and ask again

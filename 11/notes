@@ -1,0 +1,76 @@
+int AddMe(int a, int b)
+{
+	int c;
+	c = a+b;
+	return c;
+}
+
+main()
+{
+	AddMe(10,20)
+	print()
+}
+
+How would this execute?  First, when main is called, the AddMe function gets called
+Before AddMe gets executed, the values 10 and 20 need to be passed.
+This is done via the stack.
+10 and 20 are pushed into the stack.
+
+HighMem
+4bytes^
+20 } args to addMe
+10 }
+<-- ESP
+
+At this point, before AddMe is called, there needs to be a way for AddMe to "return" -- in order to do this, the instruction "print" has its memory address pushed onto the stack
+
+HighMem
+4bytes^
+20 } args to addMe
+10 }
+RET -> print()
+<-- ESP
+
+ESP is likely used inside the function, so we need a way to preserve the ESP value
+To do this, we use EBP to save the state of ESP.
+The EBP register itself also needs to be saved.
+So first, we save the old value of EBP onto the stack
+Then we copy ESP into EBP
+
+HighMem
+4bytes^
+20 } args to addMe
+10 }
+RET -> print()
+EBP old
+<-- ESP, EBP new
+
+Now we can reserve space for local int c; inside of AddMe() by creating the space and updating ESP
+
+HighMem
+4bytes^
+20 } args to addMe
+10 }
+RET -> print()
+EBP old
+Int c
+<-- ESP, EBP new
+
+Review:
+Args are stored
+RET is stored
+EBP is stored
+EBP is set to EBP
+ESP is changed accordingly to store local values
+
+How do we retrieve arguments to AddMe using EBP?
+We can use EBP to reference arguments
+
+HighMem
+4bytes^
+20 		12(%EBP) 
+10 		8(%EBP)
+RET -> print() 	4(%EBP)
+EBP old 	(%EBP)
+Int c 		-4(%EBP)
+<-- ESP, EBP new

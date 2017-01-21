@@ -1,0 +1,47 @@
+copy string from 1 memory address to another
+MOVSx
+MOVSB - move a byte 8bit
+MOVSW - move a word 16bit
+MOVSL - move a dword 32bit
+source - always ESI
+destination - always EDI
+
+df = direction flag -- decides to increment or decrement ESI/EDI after MOVSx
+
+if DF is set 1 ,then decrement
+if DF is cleared "o" then increment
+set DF using std
+clear df using cld
+
+What if we want to copy a large string?
+REP is used to repeat a string expression while ECX has a value > 0
+- load ECX with string length
+- use REP MOVSx instruction to copy the string from source to destination
+
+Loading strings from memory into registers:
+Loading strings -- loads into EAX register, string source pointed to by ESI
+LODSx
+- LODSB byte from address into AL
+- LODSW word from address into AX
+- LODSL dword from address into EAX
+
+ESI is automatically incremented/decremented based on DF flag
+
+storing strings from registers into memory:
+- stores into memory from EAX
+- EDI points to destination memory
+- STODx: b -> al to memory, w -> ax to memory, l -> EAX to memory
+edi is incremented/decremented based on DF
+
+What about comparing strings?
+ESI points to source, EDI points to destination, DF decides if EDI/ESI are incremented
+CMPSx:
+- CMPSB => compares byte value
+- CMPSW => compares word value
+- CMPSL => compares dword value
+
+CMPSx subtracts the destination string from the source string and sets the EFLAGS register appropriately
+- Carry Flag, Zero Flag, Parity Flag, sign Flag, Overflow Flag, etc are set
+
+Look into REPZ (repeat instruction while zero flag is set)
+Look into REPNZ (repeat while zero flag is not set)
